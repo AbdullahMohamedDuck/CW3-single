@@ -1,17 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header>
+      <h1>{{sitename}}</h1>
+      <button @click="showCheckout">{{this.cart.length}} Checkout</button>
+    </header>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  // components: {
+  //   HelloWorld
+  // },
+  data() {
+    return {
+      sitename: 'Vue.js Lesson Shop',
+      cart: [],
+    }
+  },
+  methods: {
+ showCheckout() {
+    this.showProduct = this.showProduct ? false : true;
+    if (this.showProduct == false) {
+    if (this.cart.length > 0) {
+
+    this.order.productID = this.cart[0].productID;
+    this.order.Spaces = this.cart[0].Spaces;
+    console.log("Order", this.order);
+      }
+    }
+                            
+   }
   }
 }
 </script>
