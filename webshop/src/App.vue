@@ -5,15 +5,17 @@
       <button @click="showCheckout">{{this.cart.length}} Checkout</button>
     </header>
     <product-list @addProduct='addToCart' > </product-list>
+    <checkout :cart='cart' @removeProduct='removeFromCart'> </checkout>
   </div>
 </template>
 
 <script>
 import productList from './components/productlist.vue'
+import checkout from './components/checkout.vue'
 
 export default {
   name: 'App',
-  components: { productList },
+  components: { productList, checkout },
   data() {
     return {
       sitename: 'Vue.js Lesson Shop',
@@ -25,8 +27,12 @@ export default {
                             
   addToCart(product) {
     this.cart.push(product)
-    // product.Spaces--
    },
+   removeFromCart(product){
+     let index = this.cart.indexOf(product);
+      this.cart.splice(index, 1);
+      product.Spaces++;
+   }
   
   }
 }

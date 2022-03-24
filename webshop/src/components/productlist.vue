@@ -44,7 +44,7 @@ export default {
     methods: {
         addToCart(product) {
         this.$emit('addProduct', product)
-        //product.Spaces--
+        product.Spaces--
     }
     }
 }
