@@ -67,24 +67,6 @@ export default {
 
       },
 
-      canAddToCart(product) {
-          if (this.cart.length > 0) {
-              if (product.productID != this.cart[0].productID) {
-                  return false;
-              }
-              else {
-                  return product.Spaces > 0;
-              }
-          }
-          else {
-              return product.Spaces > 0;
-          }
-
-
-
-      },
-
-
       // Sorting Function
       sort(s) {
           if (s === this.sortBy) {
