@@ -10,8 +10,10 @@
         <p>Location: {{product.location}}</p>
         <p>Price: £{{product.price}}</p>
         <p>Spaces: {{product.Spaces }}</p>
-<button @click="addItem(products)"><span class="fas fa-cart-plus">
-</span>Add to Cart</button> </div>
+        
+        <button @click='addItem(product)'><span class="fas fa-shopping-basket"></span>Add to cart</button>
+        
+        </div>
     </main>
 </template>
 
@@ -27,7 +29,10 @@ export default {
     methods: {
         addItem(product) {
         this.$emit('addProduct', product)
-    }
+    },
+      
+
+
     }
 }
 

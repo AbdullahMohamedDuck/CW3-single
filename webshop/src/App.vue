@@ -46,7 +46,7 @@ export default {
   methods: {
   addItem(product) {
           this.cart.push(product)
-          product.Spaces--
+          product.Spaces--;
       },
 
 
