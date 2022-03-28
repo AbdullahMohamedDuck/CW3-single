@@ -4,7 +4,11 @@
     <h2>Checkout</h2>
     <h3>Added products</h3>
     <div v-for='product in cart' :key="product.id">
-    {{product.topic}} 
+        <img v-bind:src='product.image' alt="" width="100px" height="100px">
+                            <br>
+                            {{product.topic}} <br>
+                            Location: {{product.location}} <br>
+                            Price: £{{product.price}} <br>
     <button @click='removeFromCart(product)'>remove</button>
     </div>
     <p>
