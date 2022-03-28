@@ -11,7 +11,7 @@
         <div v-if="showCheckout">
             <div>                
             </div>
-    <product-list :products='products' @addProduct='addToCart' id="style1" > </product-list>
+    <product-list :products='products' @addProduct='addItem' id="style1" > </product-list>
         </div>
         <div else>
     <checkout :cart='cart' @removeProduct='removeFromCart'> </checkout>
@@ -44,32 +44,63 @@ export default {
         });
 },
   methods: {
-  showCheckout() {
-   this.showProduct = this.showProduct ? false : true;
+  addItem(product) {
+          this.cart.push(product)
+          product.Spaces--
+      },
 
-  },
-                            
-  addToCart(product) {
-    this.cart.push(product)
-    product.Spaces--
 
-   },
-   removeFromCart(product){
-     let index = this.cart.indexOf(product);
-      this.cart.splice(index, 1);
-      product.Spaces++;
-   },
-   sortedProducts: function () 
-        {
-        return this.products.sort((a, b) => {
-        let modifier = 1;
-        if (this.sortDir === 'desc') modifier = -1;
-        if (a[this.sortBy] < b[this.sortBy]) return -1 * modifier;
-        if (a[this.sortBy] > b[this.sortBy]) return 1 * modifier;
-        return 0;
-        })
+      showCheckout() {
+          this.showProduct = this.showProduct ? false : true;
+          if (this.showProduct == false) {
+              if (this.cart.length > 0) {
 
-    },
+                  this.order.productID = this.cart[0].productID;
+                  this.order.Spaces = this.cart[0].Spaces;
+                  console.log("Order", this.order);
+              }
+          }
+      },
+
+
+
+      removeFromCart(product) {
+          let index = this.cart.indexOf(product);
+          this.cart.splice(index, 1);
+          product.Spaces++
+
+      },
+
+      backPage() {
+          this.showProduct = this.showProduct ? false : true;
+      },
+
+      canAddToCart(product) {
+          if (this.cart.length > 0) {
+              if (product.productID != this.cart[0].productID) {
+                  return false;
+              }
+              else {
+                  return product.Spaces > 0;
+              }
+          }
+          else {
+              return product.Spaces > 0;
+          }
+
+
+
+      },
+
+
+      // Sorting Function
+      sort(s) {
+          if (s === this.sortBy) {
+              this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
+          }
+          this.sortBy = s;
+
+      },
   
   }
 }

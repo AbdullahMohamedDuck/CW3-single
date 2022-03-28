@@ -5,7 +5,7 @@
     <h3>Added products</h3>
     <div v-for='product in cart' :key="product.id">
     {{product.topic}} 
-    <button @click='removeProduct(product)'>remove</button>
+    <button @click='removeFromCart(product)'>remove</button>
     </div>
     <p>
     <strong> Name </strong> <input v-model="name" />
@@ -28,7 +28,7 @@ export default{
         }
     },
     methods: {
-    removeProduct(product){
+    removeFromCart(product){
         this.$emit('removeProduct', product)
     }
     }
