@@ -6,45 +6,27 @@
         <img v-bind:src='product.image'>
         </figure>
         <h2>{{product.topic}}</h2>
-        <p>Lesson ID: {{product.id}}</p>
         <p>Description: {{product.description}}</p>
         <p>Location: {{product.location}}</p>
         <p>Price: £{{product.price}}</p>
         <p>Spaces: {{product.Spaces }}</p>
-        <button @click="addToCart(product)">Add to cart</button>   
-        </div>
+<button @click="addToCart(products)"><span class="fas fa-cart-plus">
+            </span>Add to Cart</button> </div>
     </main>
 </template>
 
 <script>
 export default {
     name: 'ProductList',
+    props: ['products'],
     data(){
-        return {
-            products:[
-                {
-                    "id":1001,
-                    "topic":"Subject: Maths",
-                    "description":"Learn maths with this subject",
-                    "price":99,
-                    "location": "London",
-                    "image":"maths.jpg", 
-                    "Spaces":5   
-                }
-            ]
-        }
+        return {}
     },
 
-    // mounted() {
-    //     fetch(this.apiUrl + "collection/products").then(response => response.json()).then(
-    //         data => {
-    //             this.products = data;
-    //         });
-    // },
+    
     methods: {
         addToCart(product) {
         this.$emit('addProduct', product)
-        product.Spaces--
     }
     }
 }
