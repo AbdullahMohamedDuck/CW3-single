@@ -39,10 +39,10 @@ export default {
     return {
       sitename: 'Vue.js Lesson Shop',
       apiUrl: 'https://cst3145cw2-single.herokuapp.com/',
-
       cart: [],
       products:[],
     }
+
   },
   mounted() {
     fetch(this.apiUrl + "collection/products").then(response => response.json()).then(
