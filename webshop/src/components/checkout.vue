@@ -30,7 +30,8 @@ export default{
     methods: {
     removeFromCart(product){
         this.$emit('removeProduct', product)
-    }
+    },
+   
     }
 }
 

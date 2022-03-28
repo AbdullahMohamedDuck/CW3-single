@@ -2,19 +2,16 @@
   <div id="app">
     <header>
       <h1>{{sitename}}</h1>
-      <button class="buttonstyle" v-if="cart.length > 0" @click='showCheckout'> {{cart.length}} <span
-                    class="fas fa-shopping-cart"></span>Cart</button>
-      <!-- <button @click="showCheckout">{{this.cart.length}} <span class="fas fa-shopping-cart"></span> Checkout</button> -->
+      <button class="buttonstyle" v-if="cart.length > 0" v-on:click='showCheckout'> {{cart.length}} <span class="fas fa-shopping-cart"></span>Cart</button>
     </header>
     
 
     <main>
-        <div v-if="showCheckout">
-            <div>                
-            </div>
+        <div v-if='showProduct == true'>
     <product-list :products='products' @addProduct='addItem' > </product-list>
         </div>
-        <div else>
+
+        <div v-if='showProduct == false'>
     <checkout :cart='cart' @removeProduct='removeFromCart'> </checkout>
         </div>
     </main>
@@ -31,6 +28,7 @@ export default {
   components: { productList, checkout },
   data() {
     return {
+      showProduct: true,
       sitename: 'Vue.js Lesson Shop',
       apiUrl: 'https://cst3145cw2-single.herokuapp.com/',
       cart: [],
@@ -45,35 +43,28 @@ export default {
         });
 },
   methods: {
-  addItem(product) {
-          this.cart.push(product)
-          product.Spaces--;
-      },
+        addItem(product) {
+                this.cart.push(product)
+                product.Spaces--;
+            },
+            
+        showCheckout() {
+            this.showProduct = this.showProduct ? false : true;
+            if (this.showProduct == false) {
+                if (this.cart.length > 0) {
 
-
-      showCheckout() {
-          this.showProduct = this.showProduct ? false : true;
-          if (this.showProduct == false) {
-              if (this.cart.length > 0) {
-
-                  this.order.productID = this.cart[0].productID;
-                  this.order.Spaces = this.cart[0].Spaces;
-                  console.log("Order", this.order);
-              }
-          }
-      },
-
-
+                    this.order.productID = this.cart[0].productID;
+                    this.order.Spaces = this.cart[0].Spaces;
+                    console.log("Order", this.order);
+                }
+            }
+        },
 
       removeFromCart(product) {
           let index = this.cart.indexOf(product);
           this.cart.splice(index, 1);
           product.Spaces++
 
-      },
-
-      backPage() {
-          this.showProduct = this.showProduct ? false : true;
       },
 
       canAddToCart(product) {
