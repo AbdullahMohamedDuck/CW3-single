@@ -2,8 +2,9 @@
   <div id="app">
     <header>
       <h1>{{sitename}}</h1>
-      
-      <button @click="showCheckout">{{this.cart.length}} <span class="fas fa-shopping-cart"></span> Checkout</button>
+      <button class="buttonstyle" v-if="cart.length > 0" @click='showCheckout'> {{cart.length}} <span
+                    class="fas fa-shopping-cart"></span>Cart</button>
+      <!-- <button @click="showCheckout">{{this.cart.length}} <span class="fas fa-shopping-cart"></span> Checkout</button> -->
     </header>
     
 
@@ -11,7 +12,7 @@
         <div v-if="showCheckout">
             <div>                
             </div>
-    <product-list :products='products' @addProduct='addItem' id="style1" > </product-list>
+    <product-list :products='products' @addProduct='addItem' > </product-list>
         </div>
         <div else>
     <checkout :cart='cart' @removeProduct='removeFromCart'> </checkout>
@@ -116,17 +117,25 @@ export default {
     margin-top: 60px;
   }
   
-#style1 {
-    display: flex;
-        margin-top: 0px;
-    flex-wrap: wrap;
-    margin: auto;
-    width: 70%;
-    padding: 10 px;
-    gap: 10px;
-    border: 5px solid rgb(181, 181, 202);
-    background-color: rgb(159, 244, 255)
+
+/* .subjectborder{
+    width: 210px;
+    background-color: #91c7fa;
+    padding: 20px 20px;
+    margin: 15px;
+    border-radius: 10px;
+    
     
 }
-
+.subjectborder figure{
+    display: flex;
+    justify-content: center;
+    align-items: right;
+    flex-wrap: wrap;
+}
+.subjectborder figure img{
+    width: 100px;
+    height: 100px;
+} */
+ 
   </style>
