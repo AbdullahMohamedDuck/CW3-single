@@ -11,20 +11,13 @@
         <div v-if="showCheckout">
             <div>                
             </div>
-    <product-list :products='products' @addProduct='addToCart' > </product-list>
+    <product-list :products='products' @addProduct='addToCart' id="style1" > </product-list>
         </div>
         <div else>
     <checkout :cart='cart' @removeProduct='removeFromCart'> </checkout>
         </div>
     </main>
-    <!-- <main>
-     <div v-if="showCheckout">
-           
-     </div>
-    <product-list :products='products' @addProduct='addToCart' > </product-list>
-    <checkout :cart='cart' @removeProduct='removeFromCart'> </checkout>
-  
-    </main> -->
+
   </div>
 </template>
 
@@ -91,4 +84,18 @@ export default {
     color: #2c3e50;
     margin-top: 60px;
   }
+  
+#style1 {
+    display: flex;
+        margin-top: 0px;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 70%;
+    padding: 10 px;
+    gap: 10px;
+    border: 5px solid rgb(181, 181, 202);
+    background-color: rgb(159, 244, 255)
+    
+}
+
   </style>

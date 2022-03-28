@@ -3,7 +3,7 @@
         
         <div v-for="product in products" :key="product.id">
      <figure>
-        <img v-bind:src='product.image'>
+        <img v-bind:src='product.image' alt="" width="200px" height="200px">
         </figure>
         <h2>{{product.topic}}</h2>
         <p>Description: {{product.description}}</p>
