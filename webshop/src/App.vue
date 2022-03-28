@@ -50,15 +50,9 @@ export default {
             
         showCheckout() {
             this.showProduct = this.showProduct ? false : true;
-            if (this.showProduct == false) {
-                if (this.cart.length > 0) {
-
-                    this.order.productID = this.cart[0].productID;
-                    this.order.Spaces = this.cart[0].Spaces;
-                    console.log("Order", this.order);
-                }
-            }
+            
         },
+        
 
       removeFromCart(product) {
           let index = this.cart.indexOf(product);
