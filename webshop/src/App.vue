@@ -7,8 +7,11 @@
     
 
     <main>
+      <div class="card-container">
         <div v-if='showProduct == true'>
-    <product-list :products='products' @addProduct='addItem' > </product-list>
+         
+    <div> <product-list :products='products' @addProduct='addItem' > </product-list> </div>
+    </div>
         </div>
 
         <div v-if='showProduct == false'>
@@ -30,7 +33,6 @@ export default {
     return {
       showProduct: true,
       sitename: 'Vue.js Lesson Shop',
-      apiUrl: 'https://cst3145cw2-single.herokuapp.com/',
       cart: [],
       products:[],
     }
@@ -62,14 +64,7 @@ export default {
 
       },
 
-      // Sorting Function
-      sort(s) {
-          if (s === this.sortBy) {
-              this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
-          }
-          this.sortBy = s;
-
-      },
+      
   
   }
 }
@@ -86,7 +81,7 @@ export default {
   }
   
 
-/* .subjectborder{
+.subjectborder{
     width: 210px;
     background-color: #91c7fa;
     padding: 20px 20px;
@@ -102,8 +97,44 @@ export default {
     flex-wrap: wrap;
 }
 .subjectborder figure img{
-    width: 100px;
-    height: 100px;
-} */
+    width: 150px;
+    height: 150px;
+}
+
+.styles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+ header{
+    background: #cfcdcdb6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border-bottom: #1aaaec 7px solid;
+
+}
+.buttonstyle{
+    width: 140px;
+    height: 50px;
+    background-color: #FFFFFF	;
+
+}
+.sortbyflex{
+    margin: auto;
+    width: 70%;
+    padding: 10 px;
  
+}
+.card-container {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    
+  }
+  .productList {
+    display: inline-block;
+    margin-left: 100px;
+    margin-top: 50px;
+}
   </style>

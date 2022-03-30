@@ -1,10 +1,21 @@
 <template>
     <main>
+        <div class="styles">
+             <div class="sortbyflex">
+
+    
+            <!-- Start sorting ascending/descending -->
+            <strong>Sort By</strong>
+            <p><button @click="sort('topic')"><span class="fas fa-sort"></span></button> Topic</p>
+            <p><button @click="sort('location')"><span class="fas fa-sort"></span></button> Location</p>
+            <p><button @click="sort('price')"><span class="fas fa-sort"></span></button> Price</p>
+
         
-        <div v-for="product in products" :key="product.id">
+      </div>
+        <div  v-for="product in products" :key="product.id">
             <div class="subjectborder">
      <figure>
-        <img v-bind:src='product.image' alt="" width="150px" height="150px">
+        <img v-bind:src='product.image'>
         </figure>
         <h2>{{product.topic}}</h2>
         <p>Lesson ID: {{product.productID}}</p>
@@ -15,6 +26,7 @@
         
         <button @click='addItem(product)' v-bind:disabled='!canAddToCart(product)'><span class="fas fa-shopping-basket"></span>Add to cart</button>
             </div>
+        </div>
         </div>
     </main>
 </template>
@@ -49,7 +61,16 @@ export default {
 
 
       },
+      // Sorting Function
+      sort(s) {
+          if (s === this.sortBy) {
+              this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
+          }
+          this.sortBy = s;
+
+      },
     }
 }
+
 
 </script>
