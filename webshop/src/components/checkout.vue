@@ -20,14 +20,14 @@
     </p>
 
     <p>
-        <Strong>Last name</Strong>
-        <input v-model='order.lastName'>
+    <Strong>Last name</Strong>
+    <input v-model='order.lastName'>
 
     </p>
 
     <p>
-        <Strong>Phone number</Strong>
-        <input type="text" maxlength="11" v-model='order.phoneNumber'>
+    <Strong>Phone number</Strong>
+    <input type="text" maxlength="11" v-model='order.phoneNumber'>
 
     </p>
 
