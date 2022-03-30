@@ -1,6 +1,7 @@
 <template>
 
     <div>
+           
     <h2>Checkout</h2>
     <h3>Added products</h3>
     <div v-for='product in cart' :key="product.id">
@@ -50,6 +51,7 @@ export default{
     props: ['cart'],
     data(){
         return {
+                  showProduct: "false",
             order: {
                     firstName: '',
                     lastName: '',
@@ -63,7 +65,47 @@ export default{
         removeFromCart(product){
             this.$emit('removeProduct', product)
         },
-        submitForm(){},
+        submitForm(){
+            //post order first/last name, phone number, spaces, productID, 
+            let order = {
+                'productID': this.order.productID,
+                'First Name': this.order.firstName,
+                'Last Name': this.order.lastName,
+                'Phone Number': this.order.phoneNumber,
+                'Spaces': this.cart.length,
+            }
+            console.log(order);
+            fetch("https://cst3145cw2-single.herokuapp.com/collection/OrderInfo", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(order),
+            }).then(function (response) {
+                response.json().then(
+                    console.log("Order Successfully posted to database")
+                )
+                alert("Order has been successfully placed!");
+
+            })
+            
+            let updatedSpaces = { "Spaces": this.order.Spaces }
+
+            fetch("https://cst3145cw2-single.herokuapp.com/collection/products" + this.order.productID, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedSpaces),
+            }).then((response) => {
+                this.cart.splice(0);
+
+
+                console.log("Updated spaces done!")
+
+            })
+
+        },
    
     },
 
@@ -83,18 +125,6 @@ export default{
             return this.order.correct;
         },
 
-        // Sorting Function
-        sortedProducts: function () {
-            return this.products.sort((a, b) => {
-                let modifier = 1;
-                if (this.sortDir === 'desc') modifier = -1;
-                if (a[this.sortBy] < b[this.sortBy]) return -1 * modifier;
-                if (a[this.sortBy] > b[this.sortBy]) return 1 * modifier;
-                return 0;
-            })
-
-
-        },
         
     },
 }
