@@ -1,7 +1,8 @@
 <template>
 
     <div>
-           
+           <button @click="showCheckout()"> Previous Page</button>
+   
     <h2>Checkout</h2>
     <h3>Added products</h3>
     <div class="productList" v-for='product in cart' :key="product.id">
@@ -65,6 +66,9 @@ export default{
         removeFromCart(product){
             this.$emit('removeProduct', product)
         },
+        showCheckout() {
+            this.$emit("showCheckout");
+    },
         submitForm(){
                 alert("Order has been successfully placed!");
         },

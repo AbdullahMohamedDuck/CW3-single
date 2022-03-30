@@ -15,7 +15,8 @@
         </div>
 
         <div v-if='showProduct == false'>
-    <checkout :cart='cart' @removeProduct='removeFromCart'> </checkout>
+    
+    <checkout :cart='cart' @removeProduct='removeFromCart' @showCheckout='showCheckout' > </checkout>
         </div>
     </main>
 
