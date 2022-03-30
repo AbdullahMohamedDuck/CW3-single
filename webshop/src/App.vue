@@ -37,7 +37,7 @@ export default {
 
   },
   mounted() {
-    fetch(this.apiUrl + "collection/products").then(response => response.json()).then(
+    fetch("https://cst3145cw2-single.herokuapp.com/collection/products").then(response => response.json()).then(
         data => {
             this.products = data;
         });
@@ -52,6 +52,7 @@ export default {
             this.showProduct = this.showProduct ? false : true;
             
         },
+        
         
 
       removeFromCart(product) {
